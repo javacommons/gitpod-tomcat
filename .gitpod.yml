@@ -1,0 +1,16 @@
+image:
+  file: .gitpod.dockerfile
+ports:
+- port: 8080
+  onOpen: open-preview
+tasks:
+- name: Terminal
+  command: >
+    echo "";
+    echo "Commands you can try:";
+    echo " * /opt/apache-tomcat-10.1.19/bin/catalina.sh run";
+    echo " * /opt/apache-tomcat-10.1.19/bin/catalina.sh stop";
+- name: Tomcat
+  command: >
+    sed -e "s|WEBAPPS|$GITPOD_REPO_ROOT/webapps|g" $GITPOD_REPO_ROOT/files/server.xml.template > /opt/apache-tomcat-10.1.19/conf/server.xml;
+    /opt/apache-tomcat-10.1.19/bin/catalina.sh run
